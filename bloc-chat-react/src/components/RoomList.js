@@ -19,14 +19,17 @@ componentDidMount() {
 
 render() {
   return (
-    <div className="chat">
-    this.state.rooms.map((rooms, firebase) =>
-    <tr className='rooms'>
-      <td>{this.state.rooms}</td>
-    </tr>
+    <div className="Room">
+      {this.state.rooms.map((rooms, index) =>
+      <tr className='RoomList'>
+      <td>{rooms}</td>
+      </tr>
+      )
+      }
     </div>
-  );
-}
-}
+      );
+      }
+      }
+
 
 export default RoomList;
