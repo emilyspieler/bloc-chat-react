@@ -9,6 +9,7 @@ class RoomList extends Component {
 this.roomsRef = this.props.firebase.database().ref('Rooms');
 }
 
+
 componentDidMount() {
      this.roomsRef.on('child_added', snapshot => {
        const room = snapshot.val();
@@ -19,14 +20,16 @@ componentDidMount() {
 
 render() {
   return (
-    <div className="Room">
+    <table id='roomList'>
+     <tbody>
       {this.state.rooms.map((rooms, index) =>
-      <tr className='RoomList'>
+      <tr key={index}>
       <td>{rooms.Name}</td>
       </tr>
       )
       }
-    </div>
+    </tbody>
+    </table>
       );
       }
       }
