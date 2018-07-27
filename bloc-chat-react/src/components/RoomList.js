@@ -12,14 +12,14 @@ this.createRoom = this.createRoom.bind(this);
 }
 
 createRoom(e){
-  e.preventDefault();
   this.roomsRef.push({
     Name: this.state.newRoomDescription
   });
 }
 
 handleChange(e) {
-     this.setState({ newRoomDescription: e.target.value })
+  e.preventDefault();
+    this.setState({ newRoomDescription: e.target.value});
    }
 
 componentDidMount() {
