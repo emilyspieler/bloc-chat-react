@@ -24,7 +24,6 @@ handleChange(e) {
     this.setState({ newRoomDescription: e.target.value});
    }
 
-
 componentDidMount() {
      this.roomsRef.on('child_added', snapshot => {
        const room = snapshot.val();
