@@ -16,19 +16,32 @@ firebase.initializeApp(config);
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
 
+    this.state ={
+      activeRoom: "Room1"
+    };
+    this.handleRoomClick = this.handleRoomClick.bind(this);
+    }
+
+    handleRoomClick(room) {
+    this.setState({ activeRoom: room });
+  }
 
   render() {
-    return (
+  return (
       <div className="App">
         <header>
           <h1>Bloc Chat</h1>
         </header>
         <div id='RoomTitle'>
-          <RoomList firebase={firebase} />
+          <RoomList firebase={firebase}  handleRoomClick={this.handleRoomClick}
+            activeRoom={this.state.activeRoom} />
         </div>
         <div id= 'Messages'>
-        <MessageList firebase={firebase} />
+        <MessageList firebase={firebase} activeRoom={this.state.activeRoom}
+         />
         </div>
       </div>
     );

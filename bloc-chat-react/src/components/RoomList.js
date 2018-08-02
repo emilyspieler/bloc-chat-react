@@ -37,7 +37,7 @@ render() {
     <section id='submit'>
     <div className="create-room">
     <form onSubmit={this.createRoom} >
-      <input type="text" value={this.state.newRoomDescription} onChange={ (e) => this.handleChange(e) }/>
+      <input type="text" value={this.state.newRoomDescription} onChange={ (e) => this.handleChange(e) } />
       <input type="submit" id="submit" name="submission" />
     </form>
     </div>
@@ -45,7 +45,7 @@ render() {
        <tbody>
         {this.state.rooms.map((rooms, index) =>
         <tr key={index}>
-        <td>{rooms.Name}</td>
+        <td className= 'room' onClick={() => this.props.handleRoomClick(rooms)}>{rooms.Name}</td>
         </tr>
         )
         }

@@ -4,41 +4,57 @@ class MessageList extends Component {
   constructor(props) {
   super(props);
   this.state = {
-  messages: []
+  messages: [],
+  activeRoom: true
   };
-  this.roomsRef = this.props.firebase.database().ref('Rooms');
-}
-
-availableRooms = (Rooms) => {
-  console.log('roomsList');
+  this.messagesRef = this.props.firebase.database().ref('messages');
+  this.createMessage = this.createMessage.bind(this);
 }
 
 componentDidMount() {
-     this.roomsRef.on('child_added', snapshot => {
-       const room = snapshot.val();
-       room.key = snapshot.key;
-       this.setState({ rooms: this.state.messages.concat( room ) })
+     this.messagesRef.on('child_added', snapshot => {
+       const message = snapshot.val();
+       message.key = snapshot.key;
+       this.setState({ messages: this.state.messages.concat( message ) })
      });
    }
 
+   createMessage(e){
+     e.preventDefault();
+     if (!this.state.messages) { return }
+     this.setState({...this.state.messages});
+     this.messagesRef.push({
+       content: this.state.messages
+     });
+   }
+
+   handleMessageChange(e) {
+       this.setState({ newMessages: e.target.value});
+      }
+
   render() {
     return (
-      <div className="MessageList">
-      <table id='MessagesList'>
+      <section className="submit-message">
+      <h2 className="active-room">{this.props.activeRoom.name}</h2>
+      <div className="create-message">
+      <h1>Write your message!</h1>
+      <form onSubmit={this.createMessage}>
+        <input type="text" value={this.state.createMessage} onChange={ (e) => this.handleMessageChange(e) } />
+        <input type="submit" id="submit" name="submission" />
+      </form>
+      </div>
+      <table id='messageList'>
          <tbody>
-          {this.state.messages.map((messages, index) =>
+          {this.state.messages.map((rooms, index) =>
           <tr key={index}>
-          <td>{messages.Name}</td>
+          <td className= 'messages'>{this.messages}</td>
           </tr>
           )
           }
         </tbody>
         </table>
-      <div className="availableRooms">
-      {this.props.availableRooms}
-      </div>
-      </div>
-    );
+        </section>
+      );
   }
 }
 
