@@ -5,54 +5,35 @@ class MessageList extends Component {
   super(props);
   this.state = {
   messages: [],
-  activeRoom: true
   };
-  this.messagesRef = this.props.firebase.database().ref('messages');
-  this.createMessage = this.createMessage.bind(this);
+ this.messagesRef = this.props.firebase.database().ref('messages');
+ this.handleChange = this.handleChange.bind(this);
 }
 
 componentDidMount() {
-     this.messagesRef.on('child_added', snapshot => {
-       const message = snapshot.val();
-       message.key = snapshot.key;
-       this.setState({ messages: this.state.messages.concat( message ) })
-     });
-   }
+  this.messagesRef.on('child_added', snapshot => {
+        this.setState({
+            messages: [...this.state.messages, snapshot.val()]
+        })
+        console.log(this.state.messages);
+    });
+}
 
-   createMessage(e){
-     e.preventDefault();
-     if (!this.state.messages) { return }
-     this.setState({...this.state.messages});
-     this.messagesRef.push({
-       content: this.state.messages
-     });
-   }
-
-   handleMessageChange(e) {
-       this.setState({ newMessages: e.target.value});
-      }
+handleChange(e) {
+     this.setState({ message: e.target.value });
+             }
 
   render() {
     return (
-      <section className="submit-message">
-      <h2 className="active-room">{this.props.activeRoom.name}</h2>
-      <div className="create-message">
-      <h1>Write your message!</h1>
-      <form onSubmit={this.createMessage}>
-        <input type="text" value={this.state.createMessage} onChange={ (e) => this.handleMessageChange(e) } />
-        <input type="submit" id="submit" name="submission" />
-      </form>
-      </div>
-      <table id='messageList'>
-         <tbody>
-          {this.state.messages.map((rooms, index) =>
-          <tr key={index}>
-          <td className= 'messages'>{this.messages}</td>
-          </tr>
+      <section className="messages">
+      <div id='messageList'>
+         <ul>
+          {this.state.messages.map((message, index) =>
+          <li key={index}>{message.content}</li>
           )
           }
-        </tbody>
-        </table>
+          </ul>
+        </div>
         </section>
       );
   }

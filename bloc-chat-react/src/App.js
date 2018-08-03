@@ -20,13 +20,14 @@ class App extends Component {
     super(props);
 
     this.state ={
-      activeRoom: "Room1"
+      activeRoom: undefined,
     };
     this.handleRoomClick = this.handleRoomClick.bind(this);
     }
 
     handleRoomClick(room) {
     this.setState({ activeRoom: room });
+    console.log(this.state.messages);
   }
 
   render() {
@@ -42,6 +43,7 @@ class App extends Component {
         <div id= 'Messages'>
         <MessageList firebase={firebase} activeRoom={this.state.activeRoom}
          />
+         <h3>{this.state.activeRoom}</h3>
         </div>
       </div>
     );

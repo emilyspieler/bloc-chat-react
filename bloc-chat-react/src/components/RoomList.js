@@ -41,16 +41,14 @@ render() {
       <input type="submit" id="submit" name="submission" />
     </form>
     </div>
-    <table id='roomList'>
-       <tbody>
-        {this.state.rooms.map((rooms, index) =>
-        <tr key={index}>
-        <td className= 'room' onClick={() => this.props.handleRoomClick(rooms)}>{rooms.Name}</td>
-        </tr>
+    <div id='roomList'>
+       <ul>
+        {this.state.rooms.map((room, index) =>
+        <li key={index} className= 'room' onClick={() => this.props.handleRoomClick(room.key)}>{room.Name}</li>
         )
         }
-      </tbody>
-      </table>
+        </ul>
+      </div>
       </section>
         );
         }
