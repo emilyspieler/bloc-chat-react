@@ -12,11 +12,11 @@ class MessageList extends Component {
 
 componentDidMount() {
   this.messagesRef.on('child_added', snapshot => {
-        this.setState({
-            messages: [...this.state.messages, snapshot.val()]
-        })
-        console.log(this.state.messages);
-    });
+    const message = snapshot.val();
+    message.key = snapshot.key;
+    this.setState({ messages: this.state.messages.concat(message) })
+  });
+  console.log(this.state.messages);
 }
 
 handleChange(e) {
