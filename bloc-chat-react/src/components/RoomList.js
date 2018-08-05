@@ -44,7 +44,7 @@ render() {
     <div id='roomList'>
        <ul>
         {this.state.rooms.map((room, index) =>
-        <li key={index} className= 'room' onClick={() => this.props.handleRoomClick(room.key)}>{room.Name}</li>
+        <li key={index} className= 'room' onClick={() => this.props.handleRoomClick(room)}>{room.Name}</li>
         )
         }
         </ul>

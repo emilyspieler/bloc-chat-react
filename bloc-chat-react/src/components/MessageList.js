@@ -14,7 +14,6 @@ componentDidMount() {
   this.messagesRef.on('child_added', snapshot => {
     const message = snapshot.val();
     message.key = snapshot.key;
-    console.log(message);
     this.setState({ messages: this.state.messages.concat(message) })
   });
 
@@ -30,7 +29,7 @@ handleChange(e) {
       <div id='messageList'>
          <ul>
           {this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map((message, index) =>
-          <li key={index}>{message.content}</li>
+          <li key={index}>{message.content}  {message.sentAt}  {message.username}</li>
           )
           }
           </ul>

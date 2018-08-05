@@ -27,6 +27,8 @@ class App extends Component {
 
     handleRoomClick(room) {
     this.setState({ activeRoom: room });
+
+    console.log(this.state.activeRoom)
   }
 
   render() {
@@ -42,7 +44,7 @@ class App extends Component {
         <div id= 'Messages'>
         <MessageList firebase={firebase} activeRoom={this.state.activeRoom}
          />
-         <h3>{this.state.activeRoom}</h3>
+         <h3>{this.state.activeRoom.Name}</h3>
         </div>
       </div>
     );
