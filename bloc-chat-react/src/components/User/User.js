@@ -19,11 +19,11 @@ class User extends Component {
   this.setState ({ userSignIn: false });
     }
 
-    componentDidMount() {
-      this.props.firebase.auth().onAuthStateChanged( user => {
-        this.props.setUser(user);
+  componentDidMount() {
+    this.props.firebase.auth().onAuthStateChanged( user => {
+      this.props.setUser(user);
       })
-    }
+  }
 
    render() {
       return <div className='signIn'>
