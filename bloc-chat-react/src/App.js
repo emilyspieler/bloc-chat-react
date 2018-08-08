@@ -17,23 +17,20 @@ firebase.initializeApp(config);
 
 class App extends Component {
   constructor(props){
-    super(props);
-
+  super(props);
     this.state ={
       activeRoom: "",
-       user: null
-    };
+      user: ""
+      };
     this.handleRoomClick = this.handleRoomClick.bind(this);
-    }
+      }
 
-    handleRoomClick(room) {
+  handleRoomClick(room) {
     this.setState({ activeRoom: room });
-    console.log(this.state.activeRoom)
   }
 
   setUser (user) {
     this.setState ({ user: user });
-    console.log(user);
   }
 
   render() {
