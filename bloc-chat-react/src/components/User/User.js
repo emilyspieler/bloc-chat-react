@@ -9,7 +9,8 @@ class User extends Component {
   };
 }
 
-  signInNoUser() {
+  signInNoUser(e) {
+  e.preventDefault();
   this.props.firebase.auth().signInAnonymously();
   this.setState ({ guestSignIn: true });
   }
@@ -39,7 +40,8 @@ class User extends Component {
    render() {
       return <div className='signIn'>
           {this.state.userSignIn ? <button onClick={() => this.signOutWithPopup()}>Sign out</button> : <button onClick={() => this.signInWithPopup()}>Sign in</button>}
-          {this.state.guestSignIn ? <button onClick={() => this.signOutNoUser()}>Guest Sign Out</button> : <button onClick={() => this.signInNoUser()}>Guest Sign in</button>}
+          {this.state.guestSignIn ? <button onClick={() => this.signOutNoUser()}>Guest Sign Out</button> : <button onClick={(e) => this.signInNoUser(e)}>Guest Sign in</button>}
+          {this.props.user ? this.props.user.displayName || 'Guest' : <h3>Please Sign In!</h3>}
         </div>
       }
 }
