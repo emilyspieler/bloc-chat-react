@@ -75,6 +75,8 @@ handleMessageChange(e) {
     return (
       <section className="messages">
       <div className="container">
+      <div className="row">
+      <div className="col-sm-9">
   <div className="jumbotron">
       <div id='messageList'>
          <ul>
@@ -86,15 +88,20 @@ handleMessageChange(e) {
           </ul>
             </div>
               </div>
+
+
         </div>
         <div className="container">
-    <div className="jumbotron">
+        <div className="col-sm-9">
         <div className="create-message">
       <p>Write your message!</p>
       <form onSubmit={this.createMessage}>
         <input type="text" value={this.state.newMessages} onChange={ (e) => this.handleMessageChange(e) } />
         <input type="submit" id="submit" name="submission" />
       </form>
+
+      </div>
+      </div>
       </div>
       </div>
       </div>

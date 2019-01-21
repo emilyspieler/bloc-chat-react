@@ -50,6 +50,7 @@ render() {
       </div>
       <div className="create-room">
       <form style={formSubmitButton} onSubmit={this.createRoom} >
+        <p>Submit a new room</p>
         <input type="text" value={this.state.newRoomDescription} onChange={ (e) => this.handleChange(e) } />
         <input type="submit" id="submit" name="submission" />
       </form>
