@@ -38,10 +38,18 @@ class User extends Component {
     }
 
    render() {
-      return <div className='signIn'>
+      return<div className="container">
+      <div className="row">
+      <div className="col-sm-12">
+      <div className="col-sm-8">
+        <div className='signIn'>
           {this.state.userSignIn ? <button onClick={() => this.signOutWithPopup()}>Sign out</button> : <button onClick={() => this.signInWithPopup()}>Sign in</button>}
           {this.state.guestSignIn ? <button onClick={() => this.signOutNoUser()}>Guest Sign Out</button> : <button onClick={(e) => this.signInNoUser(e)}>Guest Sign in</button>}
-          {this.props.user ? this.props.user.displayName || 'guest' : <h3>Please Sign In!</h3>}
+          {this.props.user ? this.props.user.displayName || 'guest' : <p>Please Sign In!</p>}
+        </div>
+        </div>
+        </div>
+      </div>
         </div>
       }
 }

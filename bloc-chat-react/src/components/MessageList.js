@@ -50,39 +50,54 @@ convertTimestamp(timestamp) {
 }
 
 createMessage(e){
-     e.preventDefault();
+  e.preventDefault();
       if (!this.props.activeRoom || !this.state.messages) { return }
      this.setState({ messages: [...this.state.newMessages], newMessages: '' });
+     if (this.props.user !== null) {
      this.messagesRef.push({
        content: this.state.newMessages,
        sentAt: firebase.database.ServerValue.TIMESTAMP,
-       username: this.props.user.displayName || 'guest',
-       roomId: this.props.activeRoom.key
+       roomId: this.props.activeRoom.key,
+       username: this.props.user.displayName || 'guest'
      });
    }
+   else {
+     alert("please sign in to send a message")
+   }
+ }
 
 handleMessageChange(e) {
      this.setState({ newMessages: e.target.value});
     }
 
   render() {
+
     return (
       <section className="messages">
-      <div className="create-message">
-    <h1>Write your message!</h1>
-    <form onSubmit={this.createMessage}>
-      <input type="text" value={this.state.newMessages} onChange={ (e) => this.handleMessageChange(e) } />
-      <input type="submit" id="submit" name="submission" />
-    </form>
-    </div>
+      <div className="container">
+  <div className="jumbotron">
       <div id='messageList'>
          <ul>
           {this.state.messages.filter(message => message.roomId === this.props.activeRoom.key).map((message, index) =>
           <li key={index}>{message.content}  {this.convertTimestamp(message.sentAt)}  {message.username}</li>
+
           )
           }
           </ul>
+            </div>
+              </div>
         </div>
+        <div className="container">
+    <div className="jumbotron">
+        <div className="create-message">
+      <p>Write your message!</p>
+      <form onSubmit={this.createMessage}>
+        <input type="text" value={this.state.newMessages} onChange={ (e) => this.handleMessageChange(e) } />
+        <input type="submit" id="submit" name="submission" />
+      </form>
+      </div>
+      </div>
+      </div>
         </section>
       );
   }

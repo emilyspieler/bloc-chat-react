@@ -34,14 +34,12 @@ componentDidMount() {
    }
 
 render() {
+        const formSubmitButton = {
+          textAlign:"left"
+        }
+
   return (
     <section id='submit'>
-    <div className="create-room">
-    <form onSubmit={this.createRoom} >
-      <input type="text" value={this.state.newRoomDescription} onChange={ (e) => this.handleChange(e) } />
-      <input type="submit" id="submit" name="submission" />
-    </form>
-    </div>
     <div id='roomList'>
        <ul>
         {this.state.rooms.map((room, index) =>
@@ -49,6 +47,12 @@ render() {
         )
         }
         </ul>
+      </div>
+      <div className="create-room">
+      <form style={formSubmitButton} onSubmit={this.createRoom} >
+        <input type="text" value={this.state.newRoomDescription} onChange={ (e) => this.handleChange(e) } />
+        <input type="submit" id="submit" name="submission" />
+      </form>
       </div>
       </section>
         );

@@ -34,24 +34,42 @@ class App extends Component {
   }
 
   render() {
+
   return (
       <div className="App">
         <header>
-          <h1>Bloc Chat</h1>
+          <h1>Messenger</h1>
         </header>
-        <div id='RoomTitle'>
-          <RoomList firebase={firebase}  handleRoomClick={this.handleRoomClick}
+
+        <div className="container">
+          <div className="row">
+          <div className="col-sm-3">
+            <h3>You are in: {this.state.activeRoom.Name}</h3>
+
+            <div id='RoomTitle'>
+            <RoomList firebase={firebase}  handleRoomClick={this.handleRoomClick}
             activeRoom={this.state.activeRoom} />
-        </div>
+            </div>
+          </div>
+
+
+        <div className="col-sm-9">
         <div id= 'Messages'>
         <MessageList firebase={firebase} activeRoom={this.state.activeRoom} user={this.state.user}
          />
-         <h3>{this.state.activeRoom.Name}</h3>
+         </div>
+
+
          <User firebase={firebase} setUser={(user) => this.setUser(user)}
           user={this.state.user}
          />
-        </div>
+           </div>
+           </div>
+
       </div>
+      </div>
+
+
     );
   }
 }

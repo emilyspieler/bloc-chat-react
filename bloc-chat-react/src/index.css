@@ -1,5 +1,38 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+header {
+  background-color: #4ABDAC;
+  text-align: center;
+  color: white;
+  padding-top: 5%;
+  padding-bottom: 5%;
+}
+
+#roomList {
+  text-align: left;
+  font-size: 30px;
+  padding-bottom: 5%;
+}
+
+ul {
+  list-style-type: none;
+}
+
+.create-room {
+  padding-left: 2%;
+}
+
+h3 {
+  font-size: 40px;
+  text-align: left;
+  padding-left: 2%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+
+#messageList {
+  background-color: red;
+}
+
+button {
+  margin-top: 4%;
+  margin-bottom: 4%;
 }
